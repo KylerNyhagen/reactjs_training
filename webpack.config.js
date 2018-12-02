@@ -5,7 +5,7 @@ var DIST_DIR = path.resolve(__dirname, "dist");
 var SRC_DIR = path.resolve(__dirname, "src");
 
 var config = {
-    entry: SRC_DIR + "/app/index.js",
+    entry: SRC_DIR + "/app/index.jsx",
     output: {
         path: DIST_DIR + "/app",
         filename: "bundle.js",
@@ -15,6 +15,9 @@ var config = {
         rules: [
             {
                 test: /\.js?/,
+                resolve: {
+                    extensions: ['.js', '.jsx'],
+                },
                 include: SRC_DIR,
                 use: {
                     loader: "babel-loader",
