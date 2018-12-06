@@ -1,18 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export class Home extends React.Component{
     render(){
-        let content = "";
-        if(true) {
-            content = <p>Hello!</p>
-        }
+        //console.log(this.props);
+        var text = "Something";
+
         return(
         <div>
             <p>In a new Component!</p>
-            { content }
-            { "Hello as a string not within a variable! It seems as those variables get put on their own lines...?\n"}
-            { 2+2 }
-            { 5 == 2 ? "Ternaries don't work" : "Ternaries work!"}
+            <p>{text}</p>
+            <p>Your name is {this.props.name}, your age is {this.props.age}</p>
+            <p>User Object => Name: {this.props.user.name}</p>
+            <div>
+                <h4>Hobbies</h4>
+                <ul>
+                    {this.props.user.hobbies.map((hobby, i) => <li key={i}>{hobby}</li>)}
+                </ul>
+            </div>
+            <hr/>
+            {this.props.children}
         </div>);
     }
 }
+
+Home.propTypes ={
+    name: PropTypes.string,
+    age: PropTypes.number,
+    user: PropTypes.object,
+    children: PropTypes.element.isRequired
+};
